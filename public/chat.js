@@ -23,6 +23,8 @@ var submit = function(){
 
     // Reset input
     message.value = "";
+
+    updateScroll();
 };
 
 
@@ -48,4 +50,11 @@ var changeColorIcon = function() {
 socket.on('chat', function(data){
    conversation.innerHTML +=
    '<div class="conversation-message"><div class="conversation-message-user-icon" style="background-color: #' + data.username + ';" ></div><div class="conversation-message-body">' + data.message + '</div></div>';
+   updateScroll();
 });
+
+
+// Scroll to the bottom of the conversation
+var updateScroll = function(){
+    conversation.scrollTop = conversation.scrollHeight;
+}
