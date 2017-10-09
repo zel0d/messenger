@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+    <title>Messenger</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+
+  </head>
+
+	<body>
+
+    <div class="header">
+      <div class="header-add">+</div>
+      <div class="header-name">
+        <input class="header-name-body" maxlength="6" placeholder="Color..." type="text">
+        <div class="header-name-icon"></div>
+      </div>
+    </div>
+
+    <div class="separation"></div>
+
+    <div class="conversation">
+
+      <div class="conversation-infos">
+        <div class="conversation-icon"></div>
+        <div class="conversation-infos-body">
+          <div class="conversation-name">General</div>
+          <div class="conversation-status">Last message at 5pm</div>
+        </div>
+      </div>
+
+      <div class="conversation-open">
+
+        <div class="conversation-messages">
+          <!-- <div class="conversation-message">
+            <div class="conversation-message-user-icon"></div>
+            <div class="conversation-message-body">Koukou, coman sa va ?</div>
+          </div>
+          <div class="conversation-message right">
+            <div class="conversation-message-body right">Wesh, ienb é toa ?</div>
+          </div>
+          <div class="conversation-message">
+            <div class="conversation-message-user-icon"></div>
+            <div class="conversation-message-body">De ouf</div>
+          </div> -->
+        </div>
+
+        <input class="conversation-composer" placeholder="Write a message to General..." type="text">
+
+      </div>
+
+    </div>
+
+    <!-- <div class="separation"></div>
+
+    <p>Made in Switzerland</p> -->
+
+  </body>
+
+  <script src="/chat.js"></script>
+
+</html>
