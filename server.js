@@ -14,7 +14,12 @@ app.use(express.static('public'));
 var io = socket(server);
 io.on('connection', (socket) => {
 
-    console.log('New connection :', socket.id);
+    console.log('New connection :', socket.id, 'from :', socket.handshake.address);
+
+    // Handle disconnection
+    socket.on('disconnect', function(){
+      
+    });
 
     // Handle chat event
     socket.on('chat', function(data){
@@ -24,6 +29,7 @@ io.on('connection', (socket) => {
 
         // Broadcast message
         socket.broadcast.emit('chat', data);
+
     });
 
 });

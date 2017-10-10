@@ -1,6 +1,8 @@
 * {
   box-sizing: border-box;
   font-family: "Muli";
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -155,6 +157,7 @@ CONVERSATION CHAT
   display: flex;
   flex-flow: row nowrap;
   margin-bottom: 5px;
+  word-wrap: break-word;
 }
 
 .conversation-message.right {
@@ -162,7 +165,7 @@ CONVERSATION CHAT
 }
 
 .conversation-message-user-icon {
-  background-color: #fc0;
+  background-color: #39ecbc;
   border-radius: 20px;
   height: 40px;
   margin-right: 10px;
@@ -188,5 +191,5 @@ CONVERSATION CHAT
 
 .conversation-composer {
   margin-left: 50px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
