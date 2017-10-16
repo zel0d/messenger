@@ -1,5 +1,5 @@
 // Make connection
-var socket = io.connect('localhost');
+var socket = io.connect('localhost:3000');
 
 // Query DOM
 var message = document.getElementsByClassName('conversation-composer')[0],

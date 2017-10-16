@@ -2,8 +2,8 @@ var express = require('express');
 var socket = require('socket.io');
 // App setup
 var app = express();
-var server = app.listen(80, function(){
-    console.log('Listening for requests on port 80...');
+var server = app.listen(3000, function(){
+    console.log('Listening for requests on port 3000...');
 });
 
 // Static files

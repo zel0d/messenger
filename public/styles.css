@@ -7,6 +7,7 @@
 
 body {
   margin: 0 15px;
+  /*min-width: 300px;*/
 }
 
 input {
@@ -178,7 +179,7 @@ CONVERSATION CHAT
   color: #123;
   font-size: 1em;
   font-weight: normal;
-  max-width: 360px;
+  max-width: 66%;
   min-height: 40px;
   overflow: hidden;
   padding: 10px 20px;
