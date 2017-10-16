@@ -1,11 +1,12 @@
 // Make connection
-var socket = io.connect('localhost:3000');
+var socket = io.connect(location.host);
 
 // Query DOM
 var message = document.getElementsByClassName('conversation-composer')[0],
       username = document.getElementsByClassName('header-name-body')[0],
       usernameIcon = document.getElementsByClassName('header-name-icon')[0],
       conversation = document.getElementsByClassName('conversation-messages')[0],
+      messages = document.getElementsByClassName('conversation-message'),
       status = document.getElementsByClassName('conversation-status')[0],
       favicon = document.getElementById('favicon');
 
@@ -32,6 +33,7 @@ var changeColorIcon = function() {
 socket.on('chat', function(data){
   conversation.innerHTML +=
   '<div class="conversation-message"><div class="conversation-message-user-icon" style="background-color: #' + data.username + ';" ></div><div class="conversation-message-body">' + data.message + '</div></div>';
+  updateConversationSize();
   updateScroll();
 });
 
@@ -68,6 +70,7 @@ var submit = function(){
   // Reset input
   message.value = "";
 
+  updateConversationSize();
   updateScroll();
 };
 
@@ -78,6 +81,17 @@ var updateScroll = function(){
 };
 
 ////////////////////////////////////////Tests/////////////////////////////////////
+
+// Keep only 10 messages in the browser
+function updateConversationSize() {
+  if (messages.length <= 10) {
+    return;
+  }
+  messages[0].remove();
+}
+
+
+
 function addParticipantsMessage (data) {
   var message = '';
   if (data.numUsers === 1) {
