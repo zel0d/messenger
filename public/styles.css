@@ -52,7 +52,7 @@ Header
 .header {
   align-items: center;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row-reverse nowrap;
   justify-content: space-between;
   margin: 15px auto;
   max-width: 960px;
@@ -92,7 +92,7 @@ CONVERSATION
   flex-flow: row nowrap;
   margin: 15px auto;
   max-width: 960px;
-  max-height: 500px;
+  /*max-height: 500px;*/
   order: 1;
 }
 
@@ -120,7 +120,7 @@ CONVERSATION INFOS
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .conversation-name {
@@ -148,7 +148,7 @@ CONVERSATION CHAT
 }
 
 .conversation-messages {
-  max-height: 400px;
+  max-height: 230px;
   overflow: scroll;
 }
 
@@ -192,4 +192,33 @@ CONVERSATION CHAT
 .conversation-composer {
   margin-left: 50px;
   margin-top: 5px;
+}
+
+@media screen and (max-width: 640px){
+
+.conversation {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.conversation-infos {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.conversation-open {
+  margin-left: 60px;
+  flex: 1;
+}
+
+.conversation-messages {
+  max-height: 230px;
+}
+
+.conversation-composer {
+  /*margin-left: -50px;*/
+  margin-left: 0;
+  margin-top: 5px;
+}
+
 }

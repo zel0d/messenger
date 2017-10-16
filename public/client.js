@@ -1,32 +1,20 @@
 // Make connection
-var socket = io.connect('http://localhost:4000');
-
-// // let's assume that the client page, once rendered, knows what room it wants to join
-// var room = "abc123";
-//
-
+var socket = io.connect('localhost');
 
 // Query DOM
 var message = document.getElementsByClassName('conversation-composer')[0],
       username = document.getElementsByClassName('header-name-body')[0],
       usernameIcon = document.getElementsByClassName('header-name-icon')[0],
       conversation = document.getElementsByClassName('conversation-messages')[0],
-      newConversation = document.getElementsByClassName('header-add')[0],
+      status = document.getElementsByClassName('conversation-status')[0],
       favicon = document.getElementById('favicon');
 
 
 socket.on('connect', function() {
     favicon.setAttribute('href', 'favicon_connected.png');
-    username.value =  Math.floor(Math.random()*16777215).toString(16);
+    username.value =  Math.floor(Math.random()*4095).toString(16);
     changeColorIcon();
 });
-
-// Listen for click on new room
-newConversation.addEventListener('click', function() {
-  // Let's sign-up for to receive messages for this room
-  socket.emit('room', usernameIcon.value);
-}, false);
-
 
 // Listen for Enter press to change the icon color
 username.addEventListener('keydown', function(e) {
@@ -63,6 +51,9 @@ var submit = function(){
     return false;
   }
 
+  // Prevents input from having injected markup
+  message.value = message.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
   // Emit message
   socket.emit('chat', {
     message: message.value,
@@ -86,6 +77,28 @@ var updateScroll = function(){
   conversation.scrollTop = conversation.scrollHeight;
 };
 
+////////////////////////////////////////Tests/////////////////////////////////////
+function addParticipantsMessage (data) {
+  var message = '';
+  if (data.numUsers === 1) {
+    message += "there's 1 participant";
+  } else {
+    message += "there are " + data.numUsers + " participants";
+  }
+  log(message);
+}
+
+// Whenever the server emits 'user joined', log it in the chat body
+socket.on('user joined', function (data) {
+  log(data.username + ' joined');
+  addParticipantsMessage(data);
+});
+
+// Whenever the server emits 'user left', log it in the chat body
+socket.on('user left', function (data) {
+  log(data.username + ' left');
+  addParticipantsMessage(data);
+});
 
 ////////////////////////////////////FUN////////////////////////////////
 
@@ -93,7 +106,7 @@ var updateScroll = function(){
 //
 // setInterval(function() {
 //     count();
-//   }, 1000);
+//   }, 500);
 //
 //   function count() {
 //     if (message.value != ''){

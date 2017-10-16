@@ -2,17 +2,19 @@ var express = require('express');
 var socket = require('socket.io');
 // App setup
 var app = express();
-var server = app.listen(4000, function(){
-    console.log('Listening for requests on port 4000...');
+var server = app.listen(80, function(){
+    console.log('Listening for requests on port 80...');
 });
 
 // Static files
 app.use(express.static('public'));
 
+var numUsers = 0;
+
 // Socket setup & pass server
 var io = socket(server);
 io.on('connection', function(socket){
-
+    var addedUser = false;
     console.log('New connection :', socket.id, 'from :', socket.handshake.address);
 
 
