@@ -13,7 +13,7 @@ var message = document.getElementsByClassName('conversation-composer')[0],
 
 socket.on('connect', function() {
     favicon.setAttribute('href', 'favicon_connected.png');
-    username.value =  Math.floor(Math.random()*4095).toString(16);
+    username.value =  Math.floor(Math.random()*4096).toString(16);
     changeColorIcon();
 });
 
@@ -33,8 +33,8 @@ var changeColorIcon = function() {
 socket.on('chat', function(data){
   conversation.innerHTML +=
   '<div class="conversation-message"><div class="conversation-message-user-icon" style="background-color: #' + data.username + ';" ></div><div class="conversation-message-body">' + data.message + '</div></div>';
-  updateConversationSize();
   updateScroll();
+  updateConversationSize();
 });
 
 
@@ -69,9 +69,8 @@ var submit = function(){
 
   // Reset input
   message.value = "";
-
-  updateConversationSize();
   updateScroll();
+  updateConversationSize();
 };
 
 
@@ -84,7 +83,7 @@ var updateScroll = function(){
 
 // Keep only 10 messages in the browser
 function updateConversationSize() {
-  if (messages.length <= 10) {
+  if (messages.length <= 30) {
     return;
   }
   messages[0].remove();

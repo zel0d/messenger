@@ -194,7 +194,7 @@ CONVERSATION CHAT
   margin-top: 5px;
 }
 
-@media screen and (max-width: 640px){
+@media screen and (max-width: 720px){
 
 .conversation {
   align-items: stretch;
